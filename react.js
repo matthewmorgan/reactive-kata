@@ -1,5 +1,8 @@
 class InputCell {
 
+  constructor (value) {
+    this.value = value
+  }
 }
 
 class CallbackCell {

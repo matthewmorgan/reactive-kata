@@ -1,8 +1,8 @@
-const {InputCell, ComputeCell, CallbackCell} =require('./react')
+const {InputCell, ComputeCell, CallbackCell} = require('./react')
 
 describe('React module', () => {
 
-  xtest('accepts input', () => {
+  test('accepts input', () => {
     const inputCell = new InputCell(10)
     expect(inputCell.value).toEqual(10)
   })
