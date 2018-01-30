@@ -7,7 +7,7 @@ describe('React module', () => {
     expect(inputCell.value).toEqual(10)
   })
 
-  xtest('allows input cell value to be set', () => {
+  test('allows input cell value to be set', () => {
     const inputCell = new InputCell(4)
     inputCell.setValue(20)
     expect(inputCell.value).toEqual(20)

@@ -1,7 +1,11 @@
 class InputCell {
 
   constructor (value) {
-    this.value = value
+    this.value = value;
+  }
+
+  setValue(value) {
+    this.value = value;
   }
 }
 
