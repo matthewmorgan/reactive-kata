@@ -1,8 +1,8 @@
-import {InputCell, ComputeCell, CallbackCell} from './react'
+const {InputCell, ComputeCell, CallbackCell} =require('./react')
 
 describe('React module', () => {
 
-  test('accepts input', () => {
+  xtest('accepts input', () => {
     const inputCell = new InputCell(10)
     expect(inputCell.value).toEqual(10)
   })
