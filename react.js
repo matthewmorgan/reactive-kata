@@ -14,7 +14,9 @@ class CallbackCell {
 }
 
 class ComputeCell {
-
+  constructor (inputCellArray, cb) {
+    this.value = 2;
+  }
 }
 
 

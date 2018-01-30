@@ -13,7 +13,7 @@ describe('React module', () => {
     expect(inputCell.value).toEqual(20)
   })
 
-  xtest('allows setting compute cells', () => {
+  test('allows setting compute cells', () => {
     const inputCell = new InputCell(1)
     const fn = inputCells => inputCells[0].value + 1
     const computeCell = new ComputeCell([inputCell], fn)
