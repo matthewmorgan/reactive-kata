@@ -34,7 +34,7 @@ describe('React module', () => {
     expect(computeCell.value).toEqual(21)
   })
 
-  xtest('compute cells update value when inputs are changed', () => {
+  test('compute cells update value when inputs are changed', () => {
     const inputCell = new InputCell(1)
     const computeCell = new ComputeCell(
       [inputCell],
