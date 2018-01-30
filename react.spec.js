@@ -20,7 +20,7 @@ describe('React module', () => {
     expect(computeCell.value).toEqual(2)
   })
 
-  xtest('compute cell takes inputs in correct order', () => {
+  test('compute cell takes inputs in correct order', () => {
     const inputCells = [
       new InputCell(1),
       new InputCell(2)

@@ -1,7 +1,7 @@
 class InputCell {
 
   constructor (value) {
-    this.value = value;
+    this.setValue(value);
   }
 
   setValue(value) {
@@ -15,7 +15,7 @@ class CallbackCell {
 
 class ComputeCell {
   constructor (inputCellArray, cb) {
-    this.value = 2;
+    this.value = cb(inputCellArray);
   }
 }
 
