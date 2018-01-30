@@ -1,25 +1,44 @@
-# Kata Base Repo
-====================================
+# React
 
-This is a starter repo for constructing a code kata in JavaScript, using the newest features of the language.
+Implement a basic reactive system.
 
-Provides:
-- Jest testing tool
-- NPM scripts to run Jest in watch mode or watch with Coverage
-- ESLint support via NPM scripts
-- `.editorconfig` to match the linting rules
+Reactive programming is a programming paradigm that focuses on how values
+are computed in terms of each other to allow a change to one value to
+automatically propagate to other values, like in a spreadsheet.
 
-## Exercise Description
+Implement a basic reactive system with cells with settable values ("input"
+cells) and cells with values computed in terms of other cells ("compute"
+cells). Implement updates so that when an input value is changed, values
+propagate to reach a new stable system state.
 
-You should change this to contain a description of the problem you are trying to solve.
+In addition, compute cells should allow for registering change notification
+callbacks.  Call a cell’s callbacks when the cell’s value in a new stable
+state has changed from the previous stable state.
 
+## Setup
 
-## Implementation
+Go through the setup instructions for ECMAScript to
+install the necessary dependencies:
 
-Serving suggestion:
-1. Fork (or clone) this repo and edit the `kata.js`, `kata.spec.js`, and `README.md` files for the problem you intend to kata-fy.  Feel free to change the names of course, as suits your problem space.  Don't forget to update your import statements, etc!
-2. Create a NEW BRANCH to work on, so the you can keep a clean copy of your starting exercise repo for future use.
+http://exercism.io/languages/ecmascript/installation
 
+## Requirements
+
+Install assignment dependencies:
+
+```bash
+$ npm install
+```
+
+## Making the test suite pass
+
+Execute the tests with:
+
+```bash
+$ npm test
+```
+
+In the test suites all tests but the first have been skipped.
 ## Requirements
 
 You should use [NodeJS v8](https://nodejs.org/en/download/) or above.
