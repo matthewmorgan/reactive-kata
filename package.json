@@ -1,12 +1,12 @@
 {
-  "name": "word-search-kata",
+  "name": "reactive-kata",
   "version": "0.0.0",
-  "description": "Base Repo for JavaScript Code Katas",
+  "description": "Reactive component kata",
   "author": "Matt Morgan",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewmorgan/kata-base.git"
+    "url": "git+https://github.com/matthewmorgan/reactive-kata.git"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -39,7 +39,7 @@
       "node": true,
       "jest": true
     },
-    "extends": "airbnb",
+    "extends": "standard",
     "rules": {
       "import/no-unresolved": "off",
       "import/extensions": "off"
@@ -50,8 +50,8 @@
   ],
   "dependencies": {},
   "bugs": {
-    "url": "https://github.com/matthewmorgan/kata-base/issues"
+    "url": "https://github.com/matthewmorgan/reactive-kata/issues"
   },
-  "homepage": "https://github.com/matthewmorgan/kata-base#readme",
+  "homepage": "https://github.com/matthewmorgan/reactive-kata#readme",
   "main": "index.js"
 }
