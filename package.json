@@ -1,31 +1,34 @@
 {
-  "name": "word-search-kata",
+  "name": "reactive-kata",
   "version": "0.0.0",
-  "description": "Base Repo for JavaScript Code Katas",
+  "description": "Reactive component kata",
   "author": "Matt Morgan",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewmorgan/kata-base.git"
+    "url": "git+https://github.com/matthewmorgan/reactive-kata.git"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.0.1",
-    "eslint-plugin-react": "^7.0.1",
-    "jest": "^20.0.1",
-    "jest-cli": "^20.0.4"
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.2.2"
   },
   "jest": {
     "modulePathIgnorePatterns": [
-      "package.json"
+      "package.json",
+      "node_modules"
     ]
   },
   "scripts": {
-    "test": "jest ./*",
-    "watch": "jest --watch ./*",
-    "watch:cover": "jest --coverage --watch ./*",
+    "test": "jest ./*.spec.js",
+    "watch": "jest --watch ./*.spec.js",
+    "watch:cover": "jest --coverage --watch ./*.spec.js",
     "lint": "eslint .",
     "lint-test": "eslint . && jest --no-cache ./* "
   },
@@ -39,7 +42,7 @@
       "node": true,
       "jest": true
     },
-    "extends": "airbnb",
+    "extends": "standard",
     "rules": {
       "import/no-unresolved": "off",
       "import/extensions": "off"
@@ -50,8 +53,8 @@
   ],
   "dependencies": {},
   "bugs": {
-    "url": "https://github.com/matthewmorgan/kata-base/issues"
+    "url": "https://github.com/matthewmorgan/reactive-kata/issues"
   },
-  "homepage": "https://github.com/matthewmorgan/kata-base#readme",
+  "homepage": "https://github.com/matthewmorgan/reactive-kata#readme",
   "main": "index.js"
 }
