@@ -82,7 +82,7 @@ describe('React module', () => {
 
   xtest('has defined CallbackCell', () => {
     const callback = new CallbackCell(cell => cell.getValue())
-    expect(callback.values).toEqual([])
+    expect(callback.getValue()).toEqual([])
   })
 
   xtest('has CallbackCell which stores values', () => {
@@ -90,7 +90,7 @@ describe('React module', () => {
     callback.alert(new InputCell(1))
     callback.alert(new InputCell(2))
 
-    expect(callback.values).toEqual([1, 2])
+    expect(callback.getValue()).toEqual([1, 2])
   })
 
   xtest('compute cells fire callbacks', () => {
@@ -104,7 +104,7 @@ describe('React module', () => {
     output.addListener(callback)
 
     inputCell.setValue(3)
-    expect(callback.values).toEqual([4])
+    expect(callback.getValue()).toEqual([4])
   })
 
   xtest('callbacks fire only when output values change', () => {
@@ -118,10 +118,10 @@ describe('React module', () => {
     output.addListener(callback)
 
     inputCell.setValue(2)
-    expect(callback.values).toEqual([])
+    expect(callback.getValue()).toEqual([])
 
     inputCell.setValue(4)
-    expect(callback.values).toEqual([222])
+    expect(callback.getValue()).toEqual([222])
   })
 
   xtest('callbacks can be added and removed', () => {
@@ -146,9 +146,9 @@ describe('React module', () => {
 
     inputCell.setValue(41)
 
-    expect(callback1.values).toEqual([32])
-    expect(callback2.values).toEqual([32, 42])
-    expect(callback3.values).toEqual([42])
+    expect(callback1.getValue()).toEqual([32])
+    expect(callback2.getValue()).toEqual([32, 42])
+    expect(callback3.getValue()).toEqual([42])
   })
 
   xtest('removing a callback multiple times doesn\'t interfere with other callbacks', () => {
@@ -170,8 +170,8 @@ describe('React module', () => {
 
     inputCell.setValue(2)
 
-    expect(callback1.values).toEqual([])
-    expect(callback2.values).toEqual([3])
+    expect(callback1.getValue()).toEqual([])
+    expect(callback2.getValue()).toEqual([3])
   })
 
   xtest('callbacks should only be called once, even if multiple dependencies change', () => {
@@ -201,7 +201,7 @@ describe('React module', () => {
 
     inputCell.setValue(4)
 
-    expect(callback1.values).toEqual([10])
+    expect(callback1.getValue()).toEqual([10])
   })
 
   xtest('callbacks should not be called if dependencies change but output value doesn\'t change', () => {
@@ -229,7 +229,7 @@ describe('React module', () => {
     inputCell.setValue(4)
     inputCell.setValue(5)
 
-    expect(callback.values).toEqual([])
+    expect(callback.getValue()).toEqual([])
   })
 
   xtest('setting a input cell value without changing it does not trigger a callback', () => {
@@ -240,6 +240,6 @@ describe('React module', () => {
 
     inputCell.setValue(1)
 
-    expect(callbackCell.values).toEqual([])
+    expect(callbackCell.getValue()).toEqual([])
   })
 })
