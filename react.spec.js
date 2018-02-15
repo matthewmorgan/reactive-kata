@@ -1,4 +1,4 @@
-import {InputCell, ComputeCell, CallbackCell} from './react'
+const {InputCell, ComputeCell, CallbackCell} = require('./react')
 
 describe('React module', () => {
   test('accepts input', () => {
@@ -6,34 +6,34 @@ describe('React module', () => {
     expect(inputCell.getValue()).toEqual(10)
   })
 
-  xtest('allows input cell value to be set', () => {
+  test('allows input cell value to be set', () => {
     const inputCell = new InputCell(4)
     inputCell.setValue(20)
     expect(inputCell.getValue()).toEqual(20)
   })
 
-  xtest('allows setting compute cells', () => {
+  test('allows setting compute cells', () => {
     const inputCell = new InputCell(1)
     const fn = inputCells => inputCells[0].getValue() + 1
     const computeCell = new ComputeCell([inputCell], fn)
     expect(computeCell.getValue()).toEqual(2)
   })
 
-  xtest('allows compute cell to use input cell value', () => {
+  test('allows compute cell to use input cell value', () => {
     const inputCell = new InputCell(2)
     const fn = inputCells => inputCells[0].getValue() + 1
     const computeCell = new ComputeCell([inputCell], fn)
     expect(computeCell.getValue()).toEqual(3)
   })
 
-  xtest('allows compute cell to alert provided function', () => {
+  test('allows compute cell to alert provided function', () => {
     const inputCell = new InputCell(1)
     const fn = inputCells => inputCells[0].getValue() + 2
     const computeCell = new ComputeCell([inputCell], fn)
     expect(computeCell.getValue()).toEqual(3)
   })
 
-  xtest('compute cell takes inputs in correct order', () => {
+  test('compute cell takes inputs in correct order', () => {
     const inputCells = [
       new InputCell(1),
       new InputCell(2)
@@ -47,7 +47,7 @@ describe('React module', () => {
     expect(computeCell.getValue()).toEqual(21)
   })
 
-  xtest('compute cells update value when inputs are changed', () => {
+  test('compute cells update value when inputs are changed', () => {
     const inputCell = new InputCell(1)
     const computeCell = new ComputeCell(
       [inputCell],
@@ -57,7 +57,7 @@ describe('React module', () => {
     expect(computeCell.getValue()).toEqual(4)
   })
 
-  xtest('compute cells can depend on other compute cells', () => {
+  test('compute cells can depend on other compute cells', () => {
     const inputCell = new InputCell(1)
     const timesTwo = new ComputeCell(
       [inputCell],
@@ -80,12 +80,12 @@ describe('React module', () => {
     expect(sum.getValue()).toEqual(96)
   })
 
-  xtest('has defined CallbackCell', () => {
+  test('has defined CallbackCell', () => {
     const callback = new CallbackCell(cell => cell.getValue())
     expect(callback.getValue()).toEqual([])
   })
 
-  xtest('has CallbackCell which stores values', () => {
+  test('has CallbackCell which stores values', () => {
     const callback = new CallbackCell(cell => cell.getValue())
     callback.alert(new InputCell(1))
     callback.alert(new InputCell(2))
