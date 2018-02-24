@@ -1,4 +1,4 @@
-class Cell {
+class StatefulCell {
   constructor() {
     this.subscribers = []
   }
@@ -12,7 +12,7 @@ class Cell {
   }
 }
 
-class InputCell extends Cell {
+class InputCell extends StatefulCell {
   constructor(value) {
     super()
     this.value = value
@@ -32,11 +32,10 @@ class InputCell extends Cell {
       this.notify()
     }
   }
-
 }
 
 
-class ComputeCell extends Cell {
+class ComputeCell extends StatefulCell {
   constructor(inputCells, fn) {
     super()
     this.fn = fn
