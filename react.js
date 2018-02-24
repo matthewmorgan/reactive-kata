@@ -41,18 +41,19 @@ class ComputeCell extends StatefulCell {
     this.fn = fn
     this.inputCells = inputCells
     this.inputCells.forEach(cell => cell.addSubscriber(this))
-    this.value = fn(inputCells)
+    this.getValue()
     this.callbacks = []
   }
 
   getValue() {
-    return this.fn(this.inputCells)
+    this.value = this.fn(this.inputCells)
+    return this.value
   }
 
   updateValue() {
     let newValue = this.fn(this.inputCells)
     if (newValue !== this.value) {
-      this.value = newValue
+      this.getValue()
       this.notify()
       this.runCallbacks()
     }

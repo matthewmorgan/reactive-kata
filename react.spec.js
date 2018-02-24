@@ -14,22 +14,22 @@ describe('React module', () => {
 
   test('allows setting compute cells', () => {
     const inputCell = new InputCell(1)
-    const fn = inputCells => inputCells[0].getValue() + 1
-    const computeCell = new ComputeCell([inputCell], fn)
-    expect(computeCell.getValue()).toEqual(2)
+    const sum = inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 0)
+    const computeCell = new ComputeCell([inputCell], sum)
+    expect(computeCell.getValue()).toEqual(1)
   })
 
   test('allows compute cell to use input cell value', () => {
     const inputCell = new InputCell(2)
-    const fn = inputCells => inputCells[0].getValue() + 1
-    const computeCell = new ComputeCell([inputCell], fn)
-    expect(computeCell.getValue()).toEqual(3)
+    const sum = inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 0)
+    const computeCell = new ComputeCell([inputCell], sum)
+    expect(computeCell.getValue()).toEqual(2)
   })
 
   test('allows compute cell to alert provided function', () => {
     const inputCell = new InputCell(1)
-    const fn = inputCells => inputCells[0].getValue() + 2
-    const computeCell = new ComputeCell([inputCell], fn)
+    const sumPlus2 = inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 2)
+    const computeCell = new ComputeCell([inputCell], sumPlus2)
     expect(computeCell.getValue()).toEqual(3)
   })
 
@@ -49,9 +49,10 @@ describe('React module', () => {
 
   test('compute cells update value when inputs are changed', () => {
     const inputCell = new InputCell(1)
+    const sumPlus1 = inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     const computeCell = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      sumPlus1
     )
     inputCell.setValue(3)
     expect(computeCell.getValue()).toEqual(4)
@@ -59,25 +60,25 @@ describe('React module', () => {
 
   test('compute cells can depend on other compute cells', () => {
     const inputCell = new InputCell(1)
-    const timesTwo = new ComputeCell(
+    const timesTwoSum = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() * 2
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue() * 2, 0)
     )
 
-    const timesThirty = new ComputeCell(
+    const timesThirtySum = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() * 30
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue() * 30, 0)
     )
 
-    const sum = new ComputeCell(
-      [timesTwo, timesThirty],
-      inputs => inputs[0].getValue() + inputs[1].getValue()
+    const sumCell = new ComputeCell(
+      [timesTwoSum, timesThirtySum],
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 0)
     )
 
-    expect(sum.getValue()).toEqual(32)
+    expect(sumCell.getValue()).toEqual(32)
 
     inputCell.setValue(3)
-    expect(sum.getValue()).toEqual(96)
+    expect(sumCell.getValue()).toEqual(96)
   })
 
   test('has defined CallbackCell', () => {
@@ -97,7 +98,7 @@ describe('React module', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     )
 
     const callback = new CallbackCell(cell => cell.getValue())
@@ -109,9 +110,10 @@ describe('React module', () => {
 
   test('callbacks fire only when output values change', () => {
     const inputCell = new InputCell(1)
+    const firstInputUnderThree = inputs => inputs[0].getValue() < 3 ? 111 : 222
     const output = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() < 3 ? 111 : 222
+      firstInputUnderThree
     )
 
     const callback = new CallbackCell(cell => cell.getValue())
@@ -128,7 +130,7 @@ describe('React module', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     )
 
     const callback1 = new CallbackCell(cell => cell.getValue())
@@ -155,7 +157,7 @@ describe('React module', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     )
 
     const callback1 = new CallbackCell(cell => cell.getValue())
@@ -178,17 +180,17 @@ describe('React module', () => {
     const inputCell = new InputCell(1)
     const plusOne = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     )
 
     const minusOne1 = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() - 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), -1)
     )
 
     const minusOne2 = new ComputeCell(
       [minusOne1],
-      inputs => inputs[0].getValue() - 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), -1)
     )
 
     const output = new ComputeCell(
@@ -208,17 +210,19 @@ describe('React module', () => {
     const inputCell = new InputCell(1)
     const plusOne = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() + 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), 1)
     )
 
     const minusOne = new ComputeCell(
       [inputCell],
-      inputs => inputs[0].getValue() - 1
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), -11)
     )
+
+    const diffFirstTwoInputs = inputs => inputs[0].getValue() - inputs[1].getValue()
 
     const alwaysTwo = new ComputeCell(
       [plusOne, minusOne],
-      inputs => inputs[0].getValue() - inputs[1].getValue()
+      diffFirstTwoInputs
     )
 
     const callback = new CallbackCell(cell => cell.getValue())
@@ -234,7 +238,10 @@ describe('React module', () => {
 
   test('setting a input cell value without changing it does not trigger a callback', () => {
     const inputCell = new InputCell(1)
-    const computeCell = new ComputeCell([inputCell], inputs => inputs.reduce((acc, el) => {acc += el.getValue(); return acc}, 0))
+    const computeCell = new ComputeCell([inputCell], inputs => inputs.reduce((acc, el) => {
+      acc += el.getValue()
+      return acc
+    }, 0))
     const callback = new CallbackCell(output => output.getValue() * 2)
 
     computeCell.addCallback(callback)
