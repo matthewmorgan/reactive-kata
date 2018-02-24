@@ -7,8 +7,9 @@ class Cell {
     this.subscribers.push(sub)
   }
 
-  notify() {}
-  runCallbacks() {}
+  notify() {
+    this.subscribers.forEach(sub => sub.updateValue())
+  }
 }
 
 class InputCell extends Cell {
@@ -32,10 +33,6 @@ class InputCell extends Cell {
     }
   }
 
-  notify() {
-    this.subscribers.forEach(sub => sub.updateValue())
-  }
-
 }
 
 
@@ -53,14 +50,9 @@ class ComputeCell extends Cell {
     return this.fn(this.inputCells)
   }
 
-  notify() {
-    this.subscribers.forEach(sub => sub.updateValue())
-  }
-
   updateValue() {
     let newValue = this.fn(this.inputCells)
     if (newValue !== this.value) {
-      console.log('old value was', this.value, 'new value is', newValue)
       this.value = newValue
       this.notify()
       this.runCallbacks()

@@ -232,13 +232,17 @@ describe('React module', () => {
     expect(callback.getValue()).toEqual([])
   })
 
-  xtest('setting a input cell value without changing it does not trigger a callback', () => {
+  test('setting a input cell value without changing it does not trigger a callback', () => {
     const inputCell = new InputCell(1)
-    const computeCell = new ComputeCell([inputCell], cell => cell.getValue())
+    const computeCell = new ComputeCell([inputCell], inputs => inputs.reduce((acc, el) => {acc += el.getValue(); return acc}, 0))
+    const callback = new CallbackCell(output => output.getValue() * 2)
 
-
+    computeCell.addCallback(callback)
     inputCell.setValue(1)
 
-    expect(computeCell.getValue()).toEqual([])
+    expect(callback.getValue()).toEqual([])
+
+    inputCell.setValue(6)
+    expect(callback.getValue()).toEqual([12])
   })
 })
