@@ -215,7 +215,7 @@ describe('React module', () => {
 
     const minusOne = new ComputeCell(
       [inputCell],
-      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), -11)
+      inputCells => inputCells.reduce((acc, el) => acc + el.getValue(), -1)
     )
 
     const diffFirstTwoInputs = inputs => inputs[0].getValue() - inputs[1].getValue()
