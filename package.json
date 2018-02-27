@@ -51,7 +51,9 @@
   "licenses": [
     "MIT"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "bugs": {
     "url": "https://github.com/matthewmorgan/reactive-kata/issues"
   },
