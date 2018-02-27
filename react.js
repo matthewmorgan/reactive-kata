@@ -47,8 +47,7 @@ class ComputeCell extends NotifyingCell {
 
   // this cell's values are computed on request
   getValue() {
-    this.updateValue()
-    return this.value
+    return this.updateValue()
   }
 
   updateValue(){
@@ -58,7 +57,7 @@ class ComputeCell extends NotifyingCell {
       this.notify()
       this.runCallbacks()
     }
-
+    return this.value
   }
 
   runCallbacks() {
